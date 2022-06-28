@@ -7,9 +7,6 @@ public class Bed {
         this.newLinenHowManyDayAgo = newLinenHowManyDayAgo;
     }
 
-    public int getNewLinenHowManyDayAgo() {
-        return newLinenHowManyDayAgo;
-    }
 
     public void setNewLinen(){
         newLinenHowManyDayAgo = 0;
