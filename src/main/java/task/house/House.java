@@ -3,11 +3,17 @@ package task.house;
 import java.util.Arrays;
 
 public class House {
-    Room[] rooms = new Room[2];
+    private Room[] rooms;
 
-    House(Room room, Room room2){
-       this.rooms[0] = room;
-       this.rooms[1] = room2;
+    House(Room[] rooms){
+       this.rooms = rooms;
+    }
+
+    public Room getRoom(int number){
+        if(number > rooms.length) {
+            return rooms[0];
+        }
+        return rooms[number];
     }
 
     @Override

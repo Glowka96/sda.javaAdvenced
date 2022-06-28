@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Room {
-    Window[] windows;
-    Bed bed;
+    private Window[] windows;
+    private Bed bed;
 
     Room(){
         windows = createTwoWindow();

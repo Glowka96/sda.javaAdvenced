@@ -4,12 +4,19 @@ public class Main {
     public static void main(String[] args) {
         Window[] windows4 = createArrayWindows(4);
         windows4 = openedWindow(windows4);
+
         Room room = new Room();
+
         Bed bed = new Bed(3);
         Room room1 = new Room(windows4, bed);
-        House house = new House(room, room1);
+
+        Room[] rooms = new Room[2];
+        rooms[0] = room;
+        rooms[1] = room1;
+
+        House house = new House(rooms);
         System.out.println(house);
-        house.rooms[0].cleanRoom();
+        house.getRoom(0).cleanRoom();
         System.out.println(house);
     }
 
