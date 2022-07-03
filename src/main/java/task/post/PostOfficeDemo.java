@@ -32,6 +32,8 @@ public class PostOfficeDemo {
         postOffice.acceptLetter(letter, 10);
 
         List<Letter> letters = initializationArrayLetter();
+        showLetters(letters);
+
         postOffice.lettersToBeAccept(letters);
         postOffice.showAcceptLetters();
 
@@ -67,6 +69,13 @@ public class PostOfficeDemo {
         for (Package aPackage :
                 packages) {
             System.out.println(aPackage);
+        }
+    }
+
+    public static void showLetters(List<Letter> letters) {
+        for (Letter letter :
+                letters) {
+            System.out.println(letter);
         }
     }
 }
