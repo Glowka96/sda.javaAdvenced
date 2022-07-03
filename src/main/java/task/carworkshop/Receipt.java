@@ -5,15 +5,11 @@ public class Receipt {
     private int count;
     private String service;
 
-    Receipt(){
-    }
-
     Receipt(int price, int count, String service){
         this.price = price;
         this.count = count;
         this.service = service;
     }
-
 
     @Override
     public String toString() {
