@@ -118,6 +118,7 @@ public class PostOffice {
         for (Letter letter :
                 acceptLetters) {
             sendLetters.add(letter);
+            letter.setStatus(SENT);
             if (this.sendLetters.lastIndexOf(letter) == 9) {
                 System.out.println("Sorry, we are unable to send any more letters today");
                 return;
