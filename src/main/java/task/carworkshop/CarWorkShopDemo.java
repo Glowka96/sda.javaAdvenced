@@ -7,11 +7,11 @@ public class CarWorkShopDemo {
         Tire[] tires = createTireForCar();
         Car car = new Car(tires);
         System.out.println(car);
-        car = crashCar(car);
+        car.flatRandomTire();
         System.out.println(car);
-        CarWorkShop carWorkShop = new CarWorkShop(car);
-        Receipt receipt = carWorkShop.repairTire();
-        System.out.println(receipt);
+        CarWorkShop carWorkShop = new CarWorkShop();
+        Receipt receipt = carWorkShop.repairTire(car);
+        receipt.printReceipt();
 
     }
 
