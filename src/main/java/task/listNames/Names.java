@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class names {
+public class Names {
     static List<String > names = new ArrayList<>(Arrays.asList("Sebastian", "Dominik", "Klaudia", "Kamil", "Emilia"));
     static List<String> names2 = new ArrayList<>(Arrays.asList("Roksana", "Tomek"));
 
