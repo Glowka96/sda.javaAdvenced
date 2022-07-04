@@ -23,14 +23,4 @@ public class CarWorkShopDemo {
         tires[3] = new Tire();
         return tires;
     }
-
-    public static Car crashCar(Car car) {
-        Random random = new Random();
-        int rd = random.nextInt(4)+1;
-        for (int i = 0; i < rd; i++) {
-            car.getTire(i).piercesTire();
-        }
-        return car;
-    }
-
 }
