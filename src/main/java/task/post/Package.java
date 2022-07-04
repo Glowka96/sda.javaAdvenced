@@ -35,6 +35,7 @@ public class Package {
             this.sender = sender;
             this.addressee = addressee;
             this.priority = priority;
+            this.weight = weight;
             status = Status.CREATED;
         } else {
             status = Status.DELETED;
