@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Town {
-    private List<Citizen> citizens = new ArrayList<>();
+    private final List<Citizen> citizens;
+
+    Town(Citizen ... citizens){
+        this.citizens = List.of(citizens);
+    }
     public void showCitizenWhoCanVote() {
         for (Citizen citizen :
                 citizens) {
@@ -23,10 +27,6 @@ public class Town {
             }
         }
         System.out.println(count);
-    }
-
-    public List<Citizen> getCitizens() {
-        return citizens;
     }
 }
 
