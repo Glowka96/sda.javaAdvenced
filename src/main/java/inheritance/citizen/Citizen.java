@@ -1,4 +1,4 @@
-package citizen;
+package inheritance.citizen;
 
 public abstract class Citizen {
     private String name;
@@ -7,7 +7,6 @@ public abstract class Citizen {
     }
 
     abstract boolean canVote();
-
 
     public String getName() {
         return name;

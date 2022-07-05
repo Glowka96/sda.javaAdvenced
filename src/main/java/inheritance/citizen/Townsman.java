@@ -1,9 +1,8 @@
-package citizen;
+package inheritance.citizen;
 
-public class Soldier extends Citizen{
-    Soldier (String name) {
+public class Townsman extends Citizen{
+    Townsman(String name) {
         super(name);
-
     }
 
     @Override

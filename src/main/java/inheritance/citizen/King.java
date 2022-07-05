@@ -1,7 +1,8 @@
-package citizen;
+package inheritance.citizen;
 
-public class Peasant extends Citizen{
-    Peasant(String name){
+
+public class King extends Citizen {
+    King(String name) {
         super(name);
     }
 
@@ -9,4 +10,8 @@ public class Peasant extends Citizen{
     boolean canVote() {
         return false;
     }
+
+
 }
+
+

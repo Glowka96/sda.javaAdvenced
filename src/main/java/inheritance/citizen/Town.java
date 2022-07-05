@@ -1,6 +1,5 @@
-package citizen;
+package inheritance.citizen;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Town {
@@ -9,6 +8,7 @@ public class Town {
     Town(Citizen ... citizens){
         this.citizens = List.of(citizens);
     }
+
     public void showCitizenWhoCanVote() {
         for (Citizen citizen :
                 citizens) {
