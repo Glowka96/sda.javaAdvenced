@@ -7,7 +7,7 @@ public class Wars {
         MechanicCard mechanicCard = new MechanicCard();
         int one;
         int two;
-        int cuont = 0;
+        int count = 0;
         do {
             one = mechanicCard.getPlayerOne().size();
             two = mechanicCard.getPlayerTwo().size();
@@ -17,8 +17,8 @@ public class Wars {
             mechanicCard.placeBets();
             System.out.println(mechanicCard.getPlayerOne());
             System.out.println(mechanicCard.getPlayerTwo());
-            cuont++;
+            count++;
         } while (one != 0 || two != 0);
-        System.out.println(cuont);
+        System.out.println(count);
     }
 }
