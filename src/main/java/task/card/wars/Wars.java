@@ -14,6 +14,8 @@ public class Wars {
                 break;
             }
             mechanicCard.placeBets();
+            System.out.println(mechanicCard.getPlayerTwo());
+            System.out.println(mechanicCard.getPlayerOne());
         } while (one != 0 || two != 0);
 
     }
