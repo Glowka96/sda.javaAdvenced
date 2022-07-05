@@ -25,6 +25,12 @@ public class Monkey extends Animal {
     }
 
     @Override
+    public void makeSound() {
+        System.out.println("uhaha");
+    }
+
+
+    @Override
     public String toString() {
         return "Monkey{" +
                 "size=" + haris +

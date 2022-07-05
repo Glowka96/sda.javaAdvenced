@@ -17,6 +17,11 @@ public class Whale extends Animal{
         System.out.println(" " + getSize());
     }
 
+    @Override
+    public void makeSound() {
+        System.out.println("plankton");
+    }
+
     public String getSize() {
         return size;
     }

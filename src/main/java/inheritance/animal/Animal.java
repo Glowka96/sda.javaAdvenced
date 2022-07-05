@@ -1,12 +1,9 @@
 package inheritance.animal;
 
-public class Animal {
+public abstract class Animal {
     private String name;
     private int age;
     private double weight;
-
-    public Animal() {
-    }
 
     public void eat(){
         System.out.println("Eat food");
@@ -16,6 +13,12 @@ public class Animal {
         this.name = name;
         this.age = age;
         this.weight = weight;
+    }
+
+    public abstract void makeSound();
+
+     void dataAnimal(){
+        System.out.print(getName() + " " + getAge() + " " + getWeight());
     }
 
     public String getName() {
@@ -28,10 +31,6 @@ public class Animal {
 
     public double getWeight() {
         return weight;
-    }
-
-    void dataAnimal(){
-        System.out.print(getName() + " " + getAge() + " " + getWeight());
     }
 
     @Override
