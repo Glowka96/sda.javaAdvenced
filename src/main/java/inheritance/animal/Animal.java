@@ -17,7 +17,7 @@ public abstract class Animal {
 
     public abstract void makeSound();
 
-     void dataAnimal(){
+    void dataAnimal(){
         System.out.print(getName() + " " + getAge() + " " + getWeight());
     }
 
