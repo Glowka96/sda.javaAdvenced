@@ -28,10 +28,6 @@ public class Town {
     public List<Citizen> getCitizens() {
         return citizens;
     }
-
-    public void setCitizens(List<Citizen> citizens) {
-        this.citizens = citizens;
-    }
 }
 
 
