@@ -13,7 +13,6 @@ public class Input {
             try {
                 number = scanner.nextInt();
                 isNumber = true;
-                if(isNumber) break;
             } catch (InputMismatchException e) {
                 scanner.next();
                 isNumber = false;
