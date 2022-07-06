@@ -2,6 +2,7 @@ package sdaTask.shape;
 
 public class Circle extends Shape {
     int radius;
+    final double PI = 3.14;
 
     public Circle(int radius) {
         this.radius = radius;
@@ -18,6 +19,16 @@ public class Circle extends Shape {
 
     public void setRadius(int radius) {
         this.radius = radius;
+    }
+
+    @Override
+    void area() {
+        System.out.println(PI * Math.sqrt(radius));
+    }
+
+    @Override
+    void getPerimeter() {
+        System.out.println(2 * PI * radius);
     }
 
     @Override

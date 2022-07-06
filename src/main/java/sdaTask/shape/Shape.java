@@ -30,6 +30,10 @@ public abstract class Shape {
         this.fillingFigure = fillingFigure;
     }
 
+    abstract void area();
+
+    abstract void getPerimeter();
+
     @Override
     public String toString() {
         return "Shape with color of" + color + " and " + fillingFigure;
