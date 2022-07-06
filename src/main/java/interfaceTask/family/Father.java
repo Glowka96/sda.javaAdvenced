@@ -9,7 +9,7 @@ public class Father implements FamilyMember {
 
     @Override
     public void presentYourself() {
-        System.out.println("I am father");
+        System.out.println("I am father " + name);
     }
 
     @Override

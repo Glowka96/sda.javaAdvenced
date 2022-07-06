@@ -9,7 +9,7 @@ public class Mother implements FamilyMember{
 
     @Override
     public void presentYourself() {
-        System.out.println("I am mother");
+        System.out.println("I am mother: " + name);
     }
 
     @Override
