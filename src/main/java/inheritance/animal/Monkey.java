@@ -1,6 +1,9 @@
 package inheritance.animal;
 
-public class Monkey extends Animal {
+import inheritance.animal.interfaceAnimal.LandCreatures;
+import inheritance.animal.interfaceAnimal.WildAnimal;
+
+public class Monkey extends Animal implements WildAnimal, LandCreatures {
     private String haris;
 
 

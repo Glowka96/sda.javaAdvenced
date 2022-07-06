@@ -1,17 +1,15 @@
-package object.reapet.point3D;
+package sdaTask.point2D;
 
-public class Point3D {
+public class Point2D {
     float x;
     float y;
-    float z;
 
-    Point3D() {
+    Point2D() {
     }
 
-    Point3D(float x, float y, float z) {
+    Point2D(float x, float y) {
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     public float getX() {
@@ -30,27 +28,18 @@ public class Point3D {
         this.y = y;
     }
 
-    public float getZ() {
-        return z;
-    }
-
-    public void setZ(float z) {
-        this.z = z;
-    }
-
     public float[] getXY() {
         float[] tab = {x, y};
         return tab;
     }
 
-    public void setXYZ(float x, float y, float z) {
+    public void setXY(float x, float y){
         this.x = x;
         this.y = y;
-        this.z = z;
     }
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ", " + z + ")";
+        return "(" + x + ", " + y + ")";
     }
 }

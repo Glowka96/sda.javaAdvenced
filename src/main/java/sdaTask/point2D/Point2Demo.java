@@ -1,4 +1,4 @@
-package object.reapet.point2D;
+package sdaTask.point2D;
 
 public class Point2Demo {
     public static void main(String[] args) {

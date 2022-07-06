@@ -1,6 +1,8 @@
 package interfaceTask.family;
 
 public interface FamilyMember {
-    void presentYourself();
+    public default void presentYourself(){
+        System.out.println("I am just a simple family member");
+    }
     boolean isAdult();
 }
