@@ -15,10 +15,6 @@ public class GameMachine {
         gameList = List.of(games);
     }
 
-    public List<Game> getGameList() {
-        return gameList;
-    }
-
     void buyingAgame() throws GameException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Which game you want to buy? ");
