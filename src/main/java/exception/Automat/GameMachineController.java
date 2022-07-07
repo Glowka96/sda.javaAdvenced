@@ -12,11 +12,6 @@ public class GameMachineController {
 
         System.out.println(gameMachine);
         gameMachine.buyingAgame();
-
     }
-
-
-
-
 }
 
