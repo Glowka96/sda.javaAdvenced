@@ -41,8 +41,9 @@ public class Rectangle extends Shape {
         System.out.println((2 * width) + (2 * height));
     }
 
-    @Override
     public String toString() {
-       return "Rectangle with width " + width + " and height " + height + " which is a subclass off " + toString();
+        return String.format("Rectangle with width=%f and " +
+                        "height=%f which is subclass off %s", width, height,
+                super.toString());
     }
 }

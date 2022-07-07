@@ -36,6 +36,7 @@ public abstract class Shape {
 
     @Override
     public String toString() {
-        return "Shape with color of" + color + " and " + fillingFigure;
+        return String.format("Shape with color of %s and %s",
+                color, fillingFigure ? "filled" : "NotFilled");
     }
 }
