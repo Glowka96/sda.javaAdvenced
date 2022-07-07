@@ -64,9 +64,6 @@ public class GameMachine {
 
     @Override
     public String toString() {
-        return "GameMachine{" +
-                "gameList=" + gameList +
-                ", game=" + game +
-                '}';
+        return "" + gameList;
     }
 }
