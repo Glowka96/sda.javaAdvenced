@@ -34,7 +34,6 @@ public class GameMachine {
 
     private Game getGame(String name) throws GameException {
         Game game1 = null;
-        try {
             for (Game aGame :
                     gameList) {
                 String title = aGame.getTitle();
@@ -46,9 +45,6 @@ public class GameMachine {
             if (game1 == null) {
                 throw new GameException("Don't have game");
             }
-        } catch (Exception e) {
-            throw new GameException("Don't have game");
-        }
         return game1;
     }
 
