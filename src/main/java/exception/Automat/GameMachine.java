@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class GameMachine {
     private List<Game> gameList;
-    private Game game;
 
     public GameMachine(Game... games) {
         gameList = List.of(games);
@@ -22,6 +21,7 @@ public class GameMachine {
         System.out.println("For how much do you want to buy?");
         int money = scanner.nextInt();
         int price;
+        Game game;
         try {
             game = getGame(name);
             price = getPrice(money, game);
