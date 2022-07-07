@@ -18,7 +18,7 @@ public class GameMachine {
     void buyingAgame() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Which game you want to buy? ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         System.out.println("For how much do you want to buy?");
         int money = scanner.nextInt();
         int price;
@@ -55,10 +55,18 @@ public class GameMachine {
 
     private int getPrice(int money, Game game) throws GameException {
         int price = game.getPrice();
-        if(price < money) {
+        if(price <= money) {
             return price;
         } else {
             throw new GameException("Not enough money");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "GameMachine{" +
+                "gameList=" + gameList +
+                ", game=" + game +
+                '}';
     }
 }

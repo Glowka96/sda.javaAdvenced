@@ -10,6 +10,7 @@ public class GameMachineController {
         Game game4 = new Game("Assasin", 239);
         GameMachine gameMachine = new GameMachine(game, game1, game2, game3, game4);
 
+        System.out.println(gameMachine);
         gameMachine.buyingAgame();
 
     }
