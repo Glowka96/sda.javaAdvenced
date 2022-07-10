@@ -1,12 +1,9 @@
-package exception.Automat;
+package exception.automat2;
 
 public class Game {
     private String title;
     private int price;
 
-    Game() {
-
-    }
     Game(String title, int price){
         this.title = title;
         this.price = price;
@@ -20,13 +17,6 @@ public class Game {
         return price;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     @Override
     public String toString() {

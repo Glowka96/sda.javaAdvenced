@@ -7,7 +7,9 @@ public class Movable {
     Movement movement;
     Characters characters;
 
-    void Movable() {
+
+    void aMovable(String sMovement) {
+        movement = Movement.valueOf(sMovement.toUpperCase());
         switch (movement) {
             case UP:
                 characters.y++;
