@@ -12,7 +12,6 @@ public class GameMachineController {
         gameMachine.buyingAgame();
 
         System.out.println(gameMachine.getProfit());
-        //gameMachine.showSearchedGame();
     }
 }
 

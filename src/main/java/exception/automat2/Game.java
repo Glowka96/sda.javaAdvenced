@@ -17,7 +17,6 @@ public class Game {
         return price;
     }
 
-
     @Override
     public String toString() {
         return "Game title: " + title + " price: " + price;
