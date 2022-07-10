@@ -25,21 +25,23 @@ public class GameMachine {
     void buyingAgame() throws GameExceptionValidTitle {
         showGameFromTheStore();
         gameSearch.searchGame();
-        addGameToSearchedGame();
         try {
+            addGameToSearchedGame();
             getGame();
             showSearchedGame();
             getPrice();
         } catch (GameExceptionValidTitle | GameExceptionValidMoney e) {
             System.out.println(e.getMessage());
+        } catch (GameExceptionValidChoiceNumber e) {
+            throw new RuntimeException(e);
         } finally {
             boolean isContinue = isContinueShop();
             searchedGame.clear();
             if(isContinue) {
                 buyingAgame();
             } else {
-                System.out.println("Thank you for shopping");
                 showPurchasedGames();
+                System.out.println("Thank you for shopping");
             }
         }
     }
@@ -51,9 +53,10 @@ public class GameMachine {
         Matcher matcher;
         for (Game game :
                 gameList) {
-            matcher = pattern.matcher(game.getTitle());
+            matcher = pattern.matcher(game.getTitle().toLowerCase());
             if(matcher.find()){
                 searchedGame.add(game);
+                isValidName = true;
             }
         }
         if(!isValidName) {
@@ -61,20 +64,20 @@ public class GameMachine {
         }
     }
 
-    private void getGame() throws GameExceptionValidTitle {
+    private void getGame() throws GameExceptionValidChoiceNumber {
         showSearchedGame();
         try{
             int number = printNumberGameForUser();
             findGame = searchedGame.get(number);
-        } catch (GameExceptionValidChoiceNumber e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            throw new GameExceptionValidChoiceNumber("Number oversize");
         }
     }
 
     private int printNumberGameForUser() throws GameExceptionValidChoiceNumber {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Which game do you choose?");
-        int number = 0;
+        int number;
         try {
             number = scanner.nextInt();
         } catch (Exception e) {
@@ -86,10 +89,9 @@ public class GameMachine {
     private void getPrice() throws GameExceptionValidMoney {
         int money = gameSearch.game.getPrice();
         int price = findGame.getPrice();
-        System.out.println(price);
-        if (money <= price) {
+        if (price <= money) {
             System.out.println("You bought game, your rest: " + (money - price));
-            searchedGame.add(findGame);
+            purchasedGame.add(findGame);
             profit += price;
         } else {
             throw new GameExceptionValidMoney("Not enough money");
@@ -149,6 +151,7 @@ public class GameMachine {
     }
 
     public void showPurchasedGames(){
+        System.out.println("Purchased games:");
         for (Game game :
                 purchasedGame) {
             System.out.println(game);

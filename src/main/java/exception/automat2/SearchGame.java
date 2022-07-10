@@ -19,7 +19,7 @@ public class SearchGame {
             nameGame = scanner.nextLine();
             nameGame.matches("\\D");
         } while (nameGame.matches("\\D"));
-        return nameGame;
+        return nameGame.toLowerCase();
     }
 
     private int printUserMoney() {

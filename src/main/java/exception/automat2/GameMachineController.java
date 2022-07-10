@@ -11,7 +11,7 @@ public class GameMachineController {
         gameMachine.gameFromTheStore();
         gameMachine.buyingAgame();
 
-        System.out.println(gameMachine.getProfit());
+        System.out.println("Shop's profit: " + gameMachine.getProfit());
     }
 }
 
