@@ -20,6 +20,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game title: " + title + " price: " + price + "\n";
+        return "Game title: " + title + " price: " + price;
     }
 }

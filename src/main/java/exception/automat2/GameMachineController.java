@@ -6,11 +6,13 @@ import java.io.FileNotFoundException;
 
 public class GameMachineController {
 
-    public static void main(String[] args) throws GameException, BookMappingException, FileNotFoundException {
+    public static void main(String[] args) throws GameExceptionValidTitle, BookMappingException, FileNotFoundException {
         GameMachine gameMachine = new GameMachine();
         gameMachine.gameFromTheStore();
-        gameMachine.showGameFromTheStore();
         gameMachine.buyingAgame();
+
+        System.out.println(gameMachine.getProfit());
+        //gameMachine.showSearchedGame();
     }
 }
 

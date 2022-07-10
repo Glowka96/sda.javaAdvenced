@@ -12,57 +12,92 @@ import java.util.regex.Pattern;
 
 public class GameMachine {
     private List<Game> gameList = new ArrayList<>();
+    private List<Game> searchedGame = new ArrayList<>();
     private SearchGame gameSearch = new SearchGame();
+    private List<Game> purchasedGame = new ArrayList<>();
     private Game findGame;
+    private int profit;
 
     public GameMachine(){
 
     }
 
-    public GameMachine(Game... games) {
-        gameList = List.of(games);
-    }
-
-    void buyingAgame() {
+    void buyingAgame() throws GameExceptionValidTitle {
+        showGameFromTheStore();
         gameSearch.searchGame();
+        addGameToSearchedGame();
         try {
             getGame();
+            showSearchedGame();
             getPrice();
-        } catch (GameException e) {
+        } catch (GameExceptionValidTitle | GameExceptionValidMoney e) {
             System.out.println(e.getMessage());
-            buyingAgame();
-        }
-    }
-
-    private void getGame() throws GameException {
-        Pattern pattern;
-        Matcher matcher = null;
-        for (Game aGame :
-                gameList) {
-            pattern = Pattern.compile(findGame.getTitle());
-            pattern.matcher(aGame.getTitle());
-            if (matcher.find()) {
-                findGame = aGame;
-                System.out.println("Okey, i have the game.");
-                break;
+        } finally {
+            boolean isContinue = isContinueShop();
+            searchedGame.clear();
+            if(isContinue) {
+                buyingAgame();
             } else {
-                throw new GameException("Don't have game");
+                System.out.println("Thank you for shopping");
+                showPurchasedGames();
             }
         }
     }
-
-    private void getPrice() throws GameException {
-        int price = findGame.getPrice();
-        int money = gameSearch.game.getPrice();
-        if (price <= money) {
-            System.out.println("You bought game, your rest: " + (money - price));
-        } else {
-            throw new GameException("Not enough money");
+    
+    private void addGameToSearchedGame() throws GameExceptionValidTitle {
+        String title = gameSearch.game.getTitle();
+        Pattern pattern = Pattern.compile(title);
+        boolean isValidName = false;
+        Matcher matcher;
+        for (Game game :
+                gameList) {
+            matcher = pattern.matcher(game.getTitle());
+            if(matcher.find()){
+                searchedGame.add(game);
+            }
+        }
+        if(!isValidName) {
+            throw new GameExceptionValidTitle("We don't have the game");
         }
     }
 
-    public void gameFromTheStore() throws FileNotFoundException, BookMappingException {
-        File file = new File("C:\\Users\\glowa\\IdeaProjects\\SDA-java\\javaAdvanced\\src\\main\\java\\exception\\automat2\\games");
+    private void getGame() throws GameExceptionValidTitle {
+        showSearchedGame();
+        try{
+            int number = printNumberGameForUser();
+            findGame = searchedGame.get(number);
+        } catch (GameExceptionValidChoiceNumber e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private int printNumberGameForUser() throws GameExceptionValidChoiceNumber {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Which game do you choose?");
+        int number = 0;
+        try {
+            number = scanner.nextInt();
+        } catch (Exception e) {
+            throw new GameExceptionValidChoiceNumber("Error! You don't entered number");
+        }
+        return number;
+    }
+
+    private void getPrice() throws GameExceptionValidMoney {
+        int money = gameSearch.game.getPrice();
+        int price = findGame.getPrice();
+        System.out.println(price);
+        if (money <= price) {
+            System.out.println("You bought game, your rest: " + (money - price));
+            searchedGame.add(findGame);
+            profit += price;
+        } else {
+            throw new GameExceptionValidMoney("Not enough money");
+        }
+    }
+
+    public void gameFromTheStore() throws BookMappingException {
+        File file = new File("src\\main\\java\\exception\\automat2\\games");
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
@@ -74,6 +109,16 @@ public class GameMachine {
             System.out.println("File not fide");
             e.printStackTrace();
         }
+    }
+
+    private boolean isContinueShop(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("You want to continue shop? yes/no");
+        String choice;
+        do {
+            choice = scanner.nextLine().toLowerCase();
+        } while (choice.matches("yes | no"));
+        return choice.equals("yes");
     }
 
     public Game mapLineToBook(String line) throws BookMappingException {
@@ -93,6 +138,25 @@ public class GameMachine {
                 gameList) {
             System.out.println(game);
         }
+    }
+
+    public void showSearchedGame(){
+        int count = 0;
+        for (Game game :
+                searchedGame) {
+            System.out.println(count++ + ". " + game);
+        }
+    }
+
+    public void showPurchasedGames(){
+        for (Game game :
+                purchasedGame) {
+            System.out.println(game);
+        }
+    }
+
+    public int getProfit() {
+        return profit;
     }
 
     @Override
