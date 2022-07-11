@@ -98,7 +98,7 @@ public class GameMachine {
         }
     }
 
-    public void gameFromTheStore() throws BookMappingException {
+    public void gameFromTheStore() throws GameMappingException {
         File file = new File("src\\main\\java\\exception\\automat2\\games");
         try {
             Scanner scanner = new Scanner(file);
@@ -123,14 +123,14 @@ public class GameMachine {
         return choice.equals("yes");
     }
 
-    public Game mapLineToBook(String line) throws BookMappingException {
+    public Game mapLineToBook(String line) throws GameMappingException {
         try {
             String[] elements = line.split("; ");
             String title = elements[0];
             int price = Integer.parseInt(elements[1]);
             return new Game(title, price);
         } catch (Exception exception) {
-            throw new BookMappingException("Incorrect file format !!!! for the line: " + line, line);
+            throw new GameMappingException("Incorrect file format !!!! for the line: " + line, line);
         }
     }
 

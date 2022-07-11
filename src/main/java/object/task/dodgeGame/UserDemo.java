@@ -21,7 +21,7 @@ public class UserDemo {
         String name = "A";
         //System.out.println(Movement.valueOf(name));
 
-       /* for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             showBoard();
             user.x++;
             System.out.println();
@@ -30,6 +30,6 @@ public class UserDemo {
                 break;
             }
 
-        }*/
+        }
     }
 }

@@ -9,7 +9,7 @@ import static object.task.dodgeGame.Movement.values;
 
 public class User extends Characters implements Movement {
 
-    public User(String aChar) {
+    public User(char aChar) {
         super(aChar);
     }
 
@@ -20,13 +20,29 @@ public class User extends Characters implements Movement {
         String choice = userChoice();
         switch (choice) {
             case "W":
-                y++;
+                if(moveUp()){
+                 break;
+                } else {
+                    movement();
+                }
             case "S":
-                y--;
+                if(moveDown()){
+                    break;
+                } else {
+                    moveDown();
+                }
             case "A":
-                x--;
+                if(moveLeft()){
+                    break;
+                } else {
+                    movement();
+                }
             case "D":
-                x++;
+                if(moveRight()){
+                    break;
+                } else {
+                    movement();
+                }
         }
     }
 
@@ -34,6 +50,7 @@ public class User extends Characters implements Movement {
     public void checkMoveAdd() {
 
     }
+
 
     private String userChoice() {
         Scanner scanner = new Scanner(System.in);
@@ -43,5 +60,6 @@ public class User extends Characters implements Movement {
         } while (choice.equals(values()));
         return choice;
     }
+
 
 }
