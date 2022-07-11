@@ -30,7 +30,6 @@ public class SearchGame {
             userMoney = scanner.nextInt();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println(e.getStackTrace());
             return printUserMoney();
         }
         return userMoney;

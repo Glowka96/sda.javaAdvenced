@@ -128,8 +128,7 @@ public class GameMachine {
             String[] elements = line.split("; ");
             String title = elements[0];
             int price = Integer.parseInt(elements[1]);
-            Game game = new Game(title, price);
-            return game;
+            return new Game(title, price);
         } catch (Exception exception) {
             throw new BookMappingException("Incorrect file format !!!! for the line: " + line, line);
         }
