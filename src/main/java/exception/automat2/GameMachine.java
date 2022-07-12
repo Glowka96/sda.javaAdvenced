@@ -16,10 +16,6 @@ public class GameMachine {
     private Game findGame;
     private int profit;
 
-    public GameMachine(){
-
-    }
-
     void buyingAgame() throws GameExceptionValidTitle {
         showGameFromTheStore();
         gameSearch.searchGame();
