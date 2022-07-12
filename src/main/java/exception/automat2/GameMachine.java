@@ -1,7 +1,5 @@
 package exception.automat2;
 
-import exception.input.BookMappingException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -104,7 +102,7 @@ public class GameMachine {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                Game game = mapLineToBook(line);
+                Game game = mapLineToGame(line);
                 gameList.add(game);
             }
         } catch (FileNotFoundException e) {
@@ -123,7 +121,7 @@ public class GameMachine {
         return choice.equals("yes");
     }
 
-    public Game mapLineToBook(String line) throws GameMappingException {
+    public Game mapLineToGame(String line) throws GameMappingException {
         try {
             String[] elements = line.split("; ");
             String title = elements[0];

@@ -19,9 +19,9 @@ public class MechanicCard {
         List<Card> packOfCards = new ArrayList<>();
         Suit[] suits = Suit.values();
         Rank[] ranks = Rank.values();
-        for (int i = 0; i < suits.length; i++) {
-            for (int j = 0; j < ranks.length; j++) {
-                packOfCards.add(new Card(ranks[j], suits[i]));
+        for (Suit suit : suits) {
+            for (Rank rank : ranks) {
+                packOfCards.add(new Card(rank, suit));
             }
         }
         Collections.shuffle(packOfCards);

@@ -4,21 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyArrayListTest {
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-    @Test
-    void size() {
-    }
+class MyArrayListTest extends ListTest{
 
-    @Test
-    void get() {
-    }
-
-    @Test
-    void add() {
-    }
-
-    @Test
-    void newCapacity() {
+    public MyArrayListTest() {
+        super(new MyArrayList<>());
     }
 }

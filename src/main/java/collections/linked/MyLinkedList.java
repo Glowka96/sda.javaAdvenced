@@ -6,14 +6,106 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MyLinkedList<E> implements List<E> {
+    private MyNode<E> firstNode = null;
+    private int actualSize = 0;
+
+    @Override
+    public boolean add(E e) {
+        MyNode<E> newNode = new MyNode(e);
+        actualSize++;
+        if (firstNode == null) {
+            firstNode = newNode;
+            return true;
+        }
+
+        MyNode<E> actualNode = firstNode;
+        while (actualNode.nextNode != null) {
+            actualNode = actualNode.nextNode;
+        }
+        actualNode.nextNode = newNode;
+        return false;
+    }
+
+    @Override
+    public E get(int index) {
+        if (index < 0 || index >= actualSize) {
+            throw new IndexOutOfBoundsException();
+        }
+        MyNode<E> actualNode = firstNode;
+        for (int i = 1; i <= index; i++) {
+            actualNode = actualNode.nextNode;
+        }
+        return actualNode.data;
+    }
+
     @Override
     public int size() {
-        return 0;
+        return actualSize;
     }
+
+    @Override
+    public void add(int index, E e) {
+       MyNode<E> newNode = new MyNode(e);
+        actualSize++;
+        if (firstNode == null) {
+            firstNode = newNode;
+        }
+
+        MyNode<E> actualNode = firstNode;
+        MyNode<E> tempNode = null;
+        for (int i = 1; i <= index; i++) {
+            tempNode = actualNode;
+            actualNode = actualNode.nextNode;
+        }
+        newNode.nextNode = actualNode;
+        tempNode.nextNode = newNode;
+
+        if (tempNode == null) { // dalej nie ma poprzedniego a więc - zmienił się pierwszy node!
+            firstNode = newNode;
+        }else{
+            tempNode.nextNode = newNode; // jeśli był poprzedni to ma wskazywać na ten nowy
+        }
+    }
+
+
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public E remove(int i) {
+        return null;
+    }
+
+    @Override
+    public E set(int i, E e) {
+        return null;
+    }
+
 
     @Override
     public boolean isEmpty() {
         return false;
+    }
+
+
+    class MyNode<E> {
+        private E data;
+        private MyNode<E> nextNode = null;
+        
+        MyNode(){
+            
+        }
+
+        public MyNode(E data) {
+            this.data = data;
+        }
     }
 
     @Override
@@ -34,16 +126,6 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public <T> T[] toArray(T[] ts) {
         return null;
-    }
-
-    @Override
-    public boolean add(E e) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
     }
 
     @Override
@@ -69,31 +151,6 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public boolean retainAll(Collection<?> collection) {
         return false;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public E get(int i) {
-        return null;
-    }
-
-    @Override
-    public E set(int i, E e) {
-        return null;
-    }
-
-    @Override
-    public void add(int i, E e) {
-
-    }
-
-    @Override
-    public E remove(int i) {
-        return null;
     }
 
     @Override

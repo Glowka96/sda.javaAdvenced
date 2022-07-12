@@ -9,8 +9,6 @@ public class MyArrayList<E> implements List<E> {
     private E[] elements = (E[]) new Object[SIZE];
 
 
-
-
     @Override
     public int size() {
         return actualSize;
@@ -18,23 +16,47 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public E get(int index) {
+        if (index < 0 || index >= actualSize) {
+            throw new IndexOutOfBoundsException();
+        }
         return elements[index];
     }
 
     @Override
     public boolean add(E e) {
-        if(actualSize == SIZE) {
-            elements = newCapacity();
-        }
         System.out.println(e);
         elements[actualSize++] = e;
+        if (actualSize == SIZE) {
+            newCapacity();
+        }
         return true;
     }
 
-    public E[] newCapacity(){
+    public void add(int index, E element) {
+        // 6 , 3, 4, 8    = 4 actualSize
+        // 0   1  2  3
+        // 6 , 3, 4, 8, 8
+        // 6 , 3, 4, 4, 8
+        // 6 , 3, 3, 4, 8
+        // 6 , 9, 3, 4, 8
+        for (int i = actualSize-1; i >= index; i--) {
+            elements[i + 1] = elements[i];
+        }
+        elements[index] = element;
+        actualSize++;
+        if (actualSize == elements.length) { //jeśli koniec miejsca - powiesz zbior
+            newCapacity();
+        }
+    }
+
+    /*public E[] newCapacity(){
         E[] newArray = (E[]) new Object[SIZE*2];
         System.arraycopy(elements, 0, newArray, 0, elements.length);
         return newArray;
+    }*/
+
+    public void newCapacity() {
+        elements = Arrays.copyOf(elements, elements.length * 2);
     }
 
     @Override
@@ -44,6 +66,14 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
+        for (E element : elements) {
+            if (element == null) {
+                break;
+            }
+            if (element.equals(o)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -100,11 +130,6 @@ public class MyArrayList<E> implements List<E> {
     @Override
     public E set(int index, E element) {
         return null;
-    }
-
-    @Override
-    public void add(int index, E element) {
-
     }
 
     @Override
