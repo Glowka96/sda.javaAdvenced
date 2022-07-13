@@ -3,11 +3,10 @@ package object.task.card;
 public class Card {
     Rank rank;
     Suit suit;
-    Card(){
-
+    public Card(){
     }
 
-    Card(Rank rank, Suit suit){
+    public Card(Rank rank, Suit suit){
         this.rank = rank;
         this.suit = suit;
     }
@@ -17,9 +16,8 @@ public class Card {
     }
 
     public int witchIsStronger(Card c1, Card c2){
-        System.out.println("card one: " + c1);
-        System.out.println("card two: " + c2);
-        return c1.getPowerCard() > c2.getPowerCard() ? 1 : 2;
+        return c1.getPowerCard() > c2.getPowerCard() ?
+                1 : c1.getPowerCard() == c2.getPowerCard() ? 0 : 2;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package object.task.card;
 
+import object.reapet.cars.Car;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,28 +46,65 @@ public class MechanicCard {
         return cardList2;
     }
 
-    public void placeBets() {
-        Card c1 = getPlayerOne().get(0);
-        Card c2 = getPlayerTwo().get(0);
-        Card c3;
-        int i = card.witchIsStronger(c1, c2);
+    public int placeBets(int i, List<Card> playerOne, List<Card> playerTwo) {
         if (i == 1) {
-            System.out.println("Winner player one");
-            getPlayerOne().add(c2);
-            getPlayerTwo().remove(c2);
-            c3 = getPlayerOne().get(0);
-            getPlayerOne().remove(c1);
-            getPlayerOne().add(c3);
-        } else {
-            System.out.println("Winner player two");
-            getPlayerTwo().add(c1);
-            getPlayerOne().remove(c1);
-            c3 = getPlayerTwo().get(0);
-            getPlayerTwo().remove(c2);
-            getPlayerTwo().add(c3);
+            getPlayerOne().addAll(playerTwo);
+            getPlayerTwo().removeAll(playerTwo);
+            getPlayerOne().removeAll(playerOne);
+            getPlayerOne().addAll(playerOne);
+            return 1;
+        } else if (i == 2) {
+            getPlayerTwo().addAll(playerOne);
+            getPlayerOne().removeAll(playerOne);
+            getPlayerTwo().removeAll(playerTwo);
+            getPlayerTwo().addAll(playerTwo);
+            return 2;
         }
+        return 0;
     }
 
+    public int whichCardIsStronger(Card c1, Card c2) {
+        return card.witchIsStronger(c1, c2);
+    }
+
+    public int whoWinner(){
+        return playerOne.size() == 0 ? 1 : 2;
+    }
+
+
+    public boolean endGame(){
+        return playerOne.size() == 0 || playerTwo.size() == 0;
+    }
+
+
+    /*public int placeBets() {
+        int count = 0;
+        int i;
+        List<Card> playerOne = new ArrayList<>();
+        List<Card> playerTwo = new ArrayList<>();
+        do {
+            Card c1 = getPlayerOne().get(count);
+            Card c2 = getPlayerTwo().get(count);
+            playerOne.add(c1);
+            playerTwo.add(c2);
+            i = card.witchIsStronger(c1, c2);
+            if (i == 1) {
+                getPlayerOne().addAll(playerTwo);
+                getPlayerTwo().removeAll(playerTwo);
+                getPlayerOne().removeAll(playerOne);
+                getPlayerOne().addAll(playerOne);
+                return 1;
+            } else if (i == 2) {
+                getPlayerTwo().addAll(playerOne);
+                getPlayerOne().removeAll(playerOne);
+                getPlayerTwo().removeAll(playerTwo);
+                getPlayerTwo().addAll(playerTwo);
+                return 2;
+            }
+            count++;
+        } while (i == 0);
+        return 0;
+    }*/
 
     public List<Card> getPlayerOne() {
         return playerOne;
