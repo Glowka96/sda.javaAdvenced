@@ -12,8 +12,7 @@ public class Letter {
         aSender = new Address();
         aAddressee = new Address();
         Random random = new Random();
-        int randomPriority = random.nextInt(2);
-        priority = randomPriority == 0;
+        priority = random.nextBoolean();
         status = Status.CREATED;
     }
 

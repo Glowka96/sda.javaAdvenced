@@ -11,85 +11,44 @@ import java.util.regex.Pattern;
 public class GameMachine {
     private List<Game> gameList = new ArrayList<>();
     private List<Game> searchedGame = new ArrayList<>();
-    private SearchGame gameSearch = new SearchGame();
     private List<Game> purchasedGame = new ArrayList<>();
     private Game findGame;
     private int profit;
 
-    void buyingAgame() throws GameExceptionValidTitle {
-        showGameFromTheStore();
-        gameSearch.searchGame();
-        try {
-            addGameToSearchedGame();
-            getGame();
-            showSearchedGame();
-            getPrice();
-        } catch (GameExceptionValidTitle | GameExceptionValidMoney e) {
-            System.out.println(e.getMessage());
-        } catch (GameExceptionValidChoiceNumber e) {
-            throw new RuntimeException(e);
-        } finally {
-            boolean isContinue = isContinueShop();
-            searchedGame.clear();
-            if(isContinue) {
-                buyingAgame();
-            } else {
-                showPurchasedGames();
-                System.out.println("Thank you for shopping");
-            }
-        }
-    }
-    
-    private void addGameToSearchedGame() throws GameExceptionValidTitle {
-        String title = gameSearch.game.getTitle();
+    public void addGameToSearchedGame(String title) throws GameMachineException {
         Pattern pattern = Pattern.compile(title);
         boolean isValidName = false;
         Matcher matcher;
         for (Game game :
                 gameList) {
             matcher = pattern.matcher(game.getTitle().toLowerCase());
-            if(matcher.find()){
+            if (matcher.find()) {
                 searchedGame.add(game);
                 isValidName = true;
             }
         }
-        if(!isValidName) {
-            throw new GameExceptionValidTitle("We don't have the game");
+        if (!isValidName) {
+            throw new GameMachineException("We don't have the game");
         }
     }
 
-    private void getGame() throws GameExceptionValidChoiceNumber {
-        showSearchedGame();
-        try{
-            int number = printNumberGameForUser();
+    public void getGame(int number) throws GameMachineException {
+        try {
             findGame = searchedGame.get(number);
         } catch (Exception e) {
-            throw new GameExceptionValidChoiceNumber("Number oversize");
+            throw new GameMachineException("Number oversize");
         }
     }
 
-    private int printNumberGameForUser() throws GameExceptionValidChoiceNumber {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Which game do you choose?");
-        int number;
-        try {
-            number = scanner.nextInt();
-        } catch (Exception e) {
-            throw new GameExceptionValidChoiceNumber("Error! You don't entered number");
-        }
-        return number;
-    }
-
-    private void getPrice() throws GameExceptionValidMoney {
-        int money = gameSearch.game.getPrice();
+    public int getPrice(int money) throws GameMachineException {
         int price = findGame.getPrice();
         if (price <= money) {
-            System.out.println("You bought game, your rest: " + (money - price));
             purchasedGame.add(findGame);
             profit += price;
         } else {
-            throw new GameExceptionValidMoney("Not enough money");
+            throw new GameMachineException("Not enough money");
         }
+        return price;
     }
 
     public void gameFromTheStore() throws GameMappingException {
@@ -102,19 +61,8 @@ public class GameMachine {
                 gameList.add(game);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not fide");
             e.printStackTrace();
         }
-    }
-
-    private boolean isContinueShop(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("You want to continue shop? yes/no");
-        String choice;
-        do {
-            choice = scanner.nextLine().toLowerCase();
-        } while (choice.matches("yes | no"));
-        return choice.equals("yes");
     }
 
     public Game mapLineToGame(String line) throws GameMappingException {
@@ -128,27 +76,16 @@ public class GameMachine {
         }
     }
 
-    public void showGameFromTheStore(){
-        for (Game game :
-                gameList) {
-            System.out.println(game);
-        }
+    public List<Game> getPurchasedGame() {
+        return purchasedGame;
     }
 
-    public void showSearchedGame(){
-        int count = 0;
-        for (Game game :
-                searchedGame) {
-            System.out.println(count++ + ". " + game);
-        }
+    public List<Game> getSearchedGame() {
+        return searchedGame;
     }
 
-    public void showPurchasedGames(){
-        System.out.println("Purchased games:");
-        for (Game game :
-                purchasedGame) {
-            System.out.println(game);
-        }
+    public List<Game> getGameList() {
+        return gameList;
     }
 
     public int getProfit() {

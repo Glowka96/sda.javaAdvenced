@@ -16,8 +16,7 @@ public class Package {
         sender = listName().get(random.nextInt(30));
         addressee = listName().get(random.nextInt(30));
         weight = random.nextInt(100_000) + 1;
-        int randomPriority = random.nextInt(2);
-        priority = randomPriority == 0;
+        priority = random.nextBoolean();
         status = Status.CREATED;
     }
 

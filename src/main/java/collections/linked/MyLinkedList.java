@@ -67,6 +67,11 @@ public class MyLinkedList<E> implements List<E> {
         }
     }
 
+    @Override
+    public E remove(int i) {
+        return null;
+    }
+
 
     @Override
     public boolean remove(Object o) {
@@ -76,11 +81,6 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public E remove(int i) {
-        return null;
     }
 
     @Override
