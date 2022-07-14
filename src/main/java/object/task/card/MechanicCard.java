@@ -46,21 +46,18 @@ public class MechanicCard {
         return cardList2;
     }
 
-    public int placeBets(int i, List<Card> playerOne, List<Card> playerTwo) {
+    public void placeBets(int i, List<Card> playerOne, List<Card> playerTwo) {
         if (i == 1) {
             getPlayerOne().addAll(playerTwo);
             getPlayerTwo().removeAll(playerTwo);
             getPlayerOne().removeAll(playerOne);
             getPlayerOne().addAll(playerOne);
-            return 1;
         } else if (i == 2) {
             getPlayerTwo().addAll(playerOne);
             getPlayerOne().removeAll(playerOne);
             getPlayerTwo().removeAll(playerTwo);
             getPlayerTwo().addAll(playerTwo);
-            return 2;
         }
-        return 0;
     }
 
     public int whichCardIsStronger(Card c1, Card c2) {
