@@ -1,44 +1,35 @@
 package object.task.card.wars;
 
 import object.task.card.Card;
-import object.task.card.MechanicCard;
-import object.task.card.MechanicCards;
-
-import java.util.ArrayList;
-import java.util.List;
+import object.task.card.MechanicGameException;
 
 public class WarsController {
-    MechanicCard mechanicCard = new MechanicCard();
-
-    private List<Card> playerOne = new ArrayList<>();
-    private List<Card> playerTwo = new ArrayList<>();
+    MechanicGameWars gameWar = new MechanicGameWars();
     private int i;
     private boolean endGame = false;
 
-    public void startWars() {
-        int count;
+    public void startWars() throws MechanicGameException {
+        int move = 0;
+        gameWar.howManyPlayers(2);
+        gameWar.addCardToPlayer(26);
         do {
-            count = 0;
             do {
-                Card c1 = mechanicCard.getPlayerOne().get(count);
-                Card c2 = mechanicCard.getPlayerTwo().get(count);
+                Card c1 = gameWar.getPlayers().get(0).getCardList().get(0);
+                Card c2 = gameWar.getPlayers().get(1).getCardList().get(0);
                 System.out.println(c1);
                 System.out.println(c2);
-                playerOne.add(c1);
-                playerTwo.add(c2);
-                i = mechanicCard.whichCardIsStronger(c1,c2);
-                count++;
+                gameWar.placeBets();
+                i = gameWar.whichCardIsStronger(c1, c2);
+                gameWar.removePlayerFirstCard();
+                System.out.println(i);
             } while (i == 0);
-            mechanicCard.placeBets(i, playerOne, playerTwo);
-            playerOne.clear();
-            playerTwo.clear();
-            endGame = mechanicCard.endGame();
+            gameWar.addCardsToWinner(i);
+            gameWar.removeStack();
+            System.out.println(gameWar.getPlayers().get(0).getCardList());
+            System.out.println(gameWar.getPlayers().get(1).getCardList());
+            endGame = gameWar.endgame();
+            System.out.println(move++);
         } while (!endGame);
-        int whoWinner = mechanicCard.whoWinner();
-        if(whoWinner == 1) {
-            System.out.println("Winner player one");
-        } else {
-            System.out.println("Winner player two");
-        }
+        System.out.println(gameWar.whoWinner());
     }
 }

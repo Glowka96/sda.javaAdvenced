@@ -1,10 +1,14 @@
 package object.task.card.wars;
 
-import object.task.card.MechanicCard;
+import object.task.card.MechanicGameException;
 
 public class Wars {
     public static void main(String[] args) {
         WarsController warsController = new WarsController();
-        warsController.startWars();
+        try {
+            warsController.startWars();
+        } catch (MechanicGameException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
